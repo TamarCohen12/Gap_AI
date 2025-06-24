@@ -2,9 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from pathlib import Path
-from rag_q_a import create_vectorstore, get_file_hash, load_document, load_vectorstore, save_vectorstore,AgentState,model,embeddings
+from rag import create_vectorstore, get_file_hash, create_optimized_documents, load_vectorstore, save_vectorstore,embeddings
 from graph import app_graph
+from llm import model
 
+# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
@@ -74,7 +76,7 @@ def initialize_system():
             if vectorstore is None:
                 # Create new vectorstore
                 print("Loading and processing document...")
-                documents = load_document(data_file)
+                documents = create_optimized_documents(data_file)
                 
                 if not documents:
                     return jsonify({
@@ -131,10 +133,9 @@ def ask_question():
                 "answer": "The system has not been initialized yet. Please wait for the system to initialize."
             }), 400
         # user_info = request.args.get('user_info', '').strip()
-        user_info = {
-            "סל חינוך חברתי - קהילתי והעשרה": 5000.0,
-            "סל אוכלוסיות במיקוד": 0.0,
-        }        
+        # user_info = "סל מנהיגות חינוכית, סל חינוך חברתי - קהילתי והעשרה, סל אוכלוסיות במיקוד"
+        user_info = ["סל תשתיות בית ספריות", "סל מנהיגות חינוכית", "סל חינוך חברתי - קהילתי והעשרה", "סל אוכלוסיות במיקוד"]
+        # user_info = "סל מנהיגות חינוכית"
         # Create initial state
         initial_state = {
             "messages": [],
@@ -153,7 +154,8 @@ def ask_question():
         return jsonify({
             "answer": result["answer"],
             "sources": result["sources"],
-            "question": question
+            "question": question,
+            "search_query": result["search_query"]
         })
         
     except Exception as e:

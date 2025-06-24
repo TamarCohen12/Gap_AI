@@ -1,0 +1,1069 @@
+[
+  {
+    "expiryDate": "2025-08-31T23:59:59",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 523,
+    "maaneAvcode": 523,
+    "maanename": "שעות בודדות גפ\"ן ",
+    "IS_IDKUN": true,
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים "
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",3,",
+    "SUG_POPUP": 21,
+    "SEDER": 1,
+    "RECHESH": [
+      {
+        "name": "מענה רשות/בעלות",
+        "COLOR": "#FEF1D7"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 622,
+    "maaneAvcode": 622,
+    "maanename": "תוכניות משרדיות",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",1,", 
+    "SUG_POPUP": null,   
+    "SEDER": 1,
+    "RECHESH": [
+      {
+        "name": "מענה משרדי",
+        "COLOR": "#FFEEF2"
+      }
+    ],  
+    "hasBaseBudget": false
+  },
+  {  
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 3010,
+    "maaneAvcode": 3010,
+    "maanename": "עמלות אשראי",
+    "budgets": [
+      {
+        "budgetcode": 14,
+        "badgetName": "תקציב כללי ",
+        "baseBudget": 170916.45
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": 1,
+    "SEDER": 1,
+    "RECHESH": [],  
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 439,
+    "maaneAvcode": 439,
+    "maanename": "יוזמות רשות/בעלות מורחב",
+    "IS_IDKUN": true,
+    "budgets": [
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",3,",
+    "SUG_POPUP": 2,
+    "SEDER": 3,
+    "RECHESH": [
+      {
+        "name": "מענה רשות/בעלות",
+        "COLOR": "#FEF1D7"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {  
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 602,
+    "maaneAvcode": 602,
+    "maanename": "יוזמות מוסדיות וצרכים ייחודיים\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 4,
+    "RECHESH": [], 
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 603,
+    "maaneAvcode": 603,
+    "maanename": "אדמיניסטרציה ולוגיסטיקה\r\n\r\n\r\n",
+    "budgets": [
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 5,
+    "RECHESH": [], 
+    "hasBaseBudget": false
+  },
+  {
+    "expiryDate": "2025-12-08T23:59:59",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 330,
+    "maaneAvcode": 330,
+    "maanename": "המרת שכר לימוד",
+    "budgets": [
+      {
+        "budgetcode": 14,
+        "badgetName": "תקציב כללי ",
+        "baseBudget": 170916.45
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": 37,
+    "SEDER": 6,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 601,
+    "maaneAvcode": 601,
+    "maanename": "הדרכה",
+    "budgets": [
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 7,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 260,
+    "maaneAvcode": 260,
+    "maanename": "מתגברים חינוכיים",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": 1,
+    "SEDER": 8,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  { 
+    "expiryDate": "2025-08-31T23:59:59",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 545,
+    "maaneAvcode": 545,
+    "maanename": "שעות בודדות",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 9,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 604,
+    "maaneAvcode": 604,
+    "maanename": "שעות עידוד ותגבור\r\n\r\n\r\n\r\n\r\n",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 25,
+        "badgetName": "חיים ביחד בחברה הישראלית",
+        "baseBudget": 9200.73
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 673,
+    "maaneAvcode": 673,
+    "maanename": "קידום הישגים בבגרות",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 1234,
+    "maaneAvcode": 1234,
+    "maanename": "סל תרבות ארצי - החברה למתנ\"סים",
+    "budgets": [
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 11,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 606,
+    "maaneAvcode": 606,
+    "maanename": "תוכניות חינוכיות - ספקים חיצוניים\r\n\r\n\r\n\r\n\r\n\r\n",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      },
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      },
+      {
+        "budgetcode": 25,
+        "badgetName": "חיים ביחד בחברה הישראלית",
+        "baseBudget": 9200.73
+      },
+      {
+        "budgetcode": 26,
+        "badgetName": "תרבות יהודית ישראלית",
+        "baseBudget": 9200.73
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 12,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 267,
+    "maaneAvcode": 267,
+    "maanename": "כלים ותוכן דיגיטלי",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 17,
+        "badgetName": "תוכנות ניהול",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 13,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 607,
+    "maaneAvcode": 607,
+    "maanename": "תשתית תקשובית",
+    "budgets": [
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 14,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 361,
+    "maaneAvcode": 361,
+    "maanename": "רווחת התלמיד",
+    "IS_BDIKAT_MELAY": 1,
+    "budgets": [
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 16,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 608,
+    "maaneAvcode": 608,
+    "maanename": "מוזיאונים ומכוני שואה\r\n\r\n\r\n",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 17,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 609,
+    "maaneAvcode": 609,
+    "maanename": "חינוך מדעי וטכנולוגי",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 18,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 358,
+    "maaneAvcode": 358,
+    "maanename": "תרבות יהודית ישראלית",
+    "budgets": [
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 26,
+        "badgetName": "תרבות יהודית ישראלית",
+        "baseBudget": 9200.73
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 20,
+    "RECHESH": [],
+    "SHOVAR_STATUS": {
+      "name_TAKTZIV": "תרבות יהודית ישראלית",
+      "TAKTZIV_NUTZAL": 9200,
+      "baseBudget": 9200.73
+    },
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 345,
+    "maaneAvcode": 345,
+    "maanename": "חיים ביחד בחברה הישראלית",
+    "IS_BDIKAT_MELAY": 1,
+    "budgets": [
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 25,
+        "badgetName": "חיים ביחד בחברה הישראלית",
+        "baseBudget": 9200.73
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 21,
+    "RECHESH": [],
+    "SHOVAR_STATUS": {
+      "name_TAKTZIV": "חיים ביחד בחברה הישראלית",
+      "TAKTZIV_NUTZAL": 0,
+      "baseBudget": 9200.73
+    },
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 347,
+    "maaneAvcode": 347,
+    "maanename": "חינוך חברתי ",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 22,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 614,
+    "maaneAvcode": 614,
+    "maanename": "חינוך גופני",
+    "budgets": [
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 23,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "expiryDate": "2024-05-01T00:00:00",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 299,
+    "maaneAvcode": 299,
+    "maanename": "לימודי עזרה ראשונה לכיתות י'",
+    "IS_IDKUN": true,
+    "IS_EDITABLE": false,
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 23,
+        "badgetName": "עזרה ראשונה",
+        "baseBudget": 7380
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",1,",
+    "SUG_POPUP": 1,
+    "SEDER": 24,
+    "RECHESH": [
+      {
+        "name": "מענה משרדי",
+        "COLOR": "#FFEEF2"
+      }
+    ],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 615,
+    "maaneAvcode": 615,
+    "maanename": "פעילות חד פעמית, הרצאות וסדנאות",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 25,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 282,
+    "maaneAvcode": 282,
+    "maanename": "פיתוח מקצועי",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 26,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 263,
+    "maaneAvcode": 263,
+    "maanename": "פסיכולוגים",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 27,
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 617,
+    "maaneAvcode": 617,
+    "maanename": "ליווי וייעוץ",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 10,
+        "badgetName": "סל אוכלוסיות במיקוד",
+        "IKON_SAL": "Mikud",
+        "baseBudget": 46003.65
+      },
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 13,
+        "badgetName": "סל קידום רווחת התלמיד",
+        "IKON_SAL": "Talmid",
+        "baseBudget": 73605.84
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,         
+    "RECHESH": [],
+    "hasBaseBudget": true
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 618,
+    "maaneAvcode": 618,
+    "maanename": "ספרים וספריות",
+    "budgets": [
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": null,
+    "SUG_POPUP": null,
+    "SEDER": 29,
+    "RECHESH": [],
+    "hasBaseBudget": false
+  },
+  {         
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 300,
+    "maaneAvcode": 300,
+    "maanename": "מאגר סרטים",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",1,",
+    "SUG_POPUP": 1,
+    "RECHESH": [
+      {
+        "name": "מענה משרדי",
+        "COLOR": "#FFEEF2"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 1129,
+    "maaneAvcode": 1129,
+    "maanename": "אומנויות",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 9,
+        "badgetName": "סל חינוך חברתי - קהילתי והעשרה",
+        "baseBudget": 0
+      },
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",2,",
+    "SUG_POPUP": null,
+    "RECHESH": [
+      {
+        "name": "מענה מוסדי",
+        "COLOR": "#D9F6F8"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 521,
+    "maaneAvcode": 521,
+    "maanename": "יוזמות רשות בעלות המוכרות למינימום",
+    "budgets": [
+      {
+        "budgetcode": 11,
+        "badgetName": "סל מנהיגות חינוכית",
+        "IKON_SAL": "Chinuch",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",3,",
+    "SUG_POPUP": 10,
+    "RECHESH": [
+      {
+        "name": "מענה רשות/בעלות",
+        "COLOR": "#FEF1D7"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {
+    "expiryDate": "2024-06-05T00:00:00",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 1104,
+    "maaneAvcode": 1104,
+    "maanename": "תקציב עבור תלמידים מפונים",
+    "IS_EDITABLE": false,
+    "budgets": [
+      {
+        "budgetcode": 12,
+        "badgetName": "סל תשתיות בית ספריות",
+        "IKON_SAL": "School",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",1,",
+    "SUG_POPUP": 1,
+    "RECHESH": [
+      {
+        "name": "מענה משרדי",
+        "COLOR": "#FFEEF2"
+      }
+    ],
+    "hasBaseBudget": false
+  },
+  {
+    "expiryDate": "2025-11-01T00:00:00",
+    "masterBudjet": {
+      "code": 1,
+      "name": "תקציב גפ\"ן"
+    },
+    "maanecode": 544,
+    "maaneAvcode": 544,
+    "maanename": "העברת יתרת תקציב משנה לשנה",
+    "budgets": [
+      {
+        "budgetcode": 8,
+        "badgetName": "סל מענים פדגוגיים ורגשיים ",
+        "baseBudget": 0
+      }
+    ],
+    "SUG_TASHLUM_MISRAD_MESHURSHAR": ",1,",
+    "SUG_POPUP": 32,
+    "RECHESH": [
+      {
+        "name": "מענה משרדי",
+        "COLOR": "#FFEEF2"
+      }
+    ], 
+    "hasBaseBudget": false
+  }
+]

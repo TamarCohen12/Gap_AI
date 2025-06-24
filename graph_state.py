@@ -12,4 +12,4 @@ class AgentState(TypedDict):
     retrieved_docs: List[Document]
     answer: str
     sources: List[str]
-    user_info: Dict[str, float]
+    user_info:str
