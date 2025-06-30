@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from pathlib import Path
-from rag import create_vectorstore, get_file_hash, create_optimized_documents, load_vectorstore, save_vectorstore,embeddings
+from rag import create_vectorstore, get_file_hash, load_document, load_vectorstore, save_vectorstore,embeddings
 from graph import app_graph
 from llm import model
 
@@ -12,7 +12,6 @@ CORS(app)
 
 # Configuration
 FILES_DIR = "files"
-VECTORSTORE_DIR = "vectorDB"
 SUPPORTED_EXTENSIONS = ['.xlsx', '.csv', '.txt', '.json']
 
 # Global variables
@@ -45,6 +44,7 @@ def get_status():
 @app.route('/api/initialize', methods=['GET'])#TODO:change to POST
 def initialize_system():
     """Initialize the RAG system"""
+    # TODO:move it to redis
     global current_vectorstore, current_file_hash, system_initialized
     
     try:
@@ -76,7 +76,7 @@ def initialize_system():
             if vectorstore is None:
                 # Create new vectorstore
                 print("Loading and processing document...")
-                documents = create_optimized_documents(data_file)
+                documents = load_document(data_file)
                 
                 if not documents:
                     return jsonify({
@@ -165,56 +165,6 @@ def ask_question():
             "answer": "Sorry, an error occurred while processing the question. Please try again."
         }), 500
 
-
-
-@app.route('/api/upload', methods=['POST'])
-def upload_file():
-    """Upload new data file"""
-    global current_vectorstore, current_file_hash, system_initialized
-    
-    try:
-        if 'file' not in request.files:
-            return jsonify({"error": "File not found"}), 400
-
-        file = request.files['file']
-        if file.filename == '':
-            return jsonify({"error": "No file selected"}), 400
-
-        # Check file extension
-        file_ext = Path(file.filename).suffix.lower()
-        if file_ext not in SUPPORTED_EXTENSIONS:
-            return jsonify({
-                "error": f"Unsupported file type. Supported files: {', '.join(SUPPORTED_EXTENSIONS)}"
-            }), 400
-        
-        # Save file
-        filename = f"data{file_ext}"
-        file_path = os.path.join(FILES_DIR, filename)
-        file.save(file_path)
-        
-        # Reset system to force reinitialization
-        current_vectorstore = None
-        current_file_hash = None
-        system_initialized = False
-        
-        return jsonify({
-            "success": True,
-            "message": "File uploaded successfully",
-            "filename": filename
-        })
-        
-    except Exception as e:
-        print(f"Error uploading file: {e}")
-        return jsonify({
-            "error": "Error uploading file",
-            "details": str(e)
-        }), 500
-
-
 if __name__ == '__main__':
-    print("🚀 Starting RAG Backend...")
-    print(f"📁 Files directory: {FILES_DIR}")
-    print(f"📚 Vectorstore directory: {VECTORSTORE_DIR}")
-    print("🌐 Server running on http://localhost:5000")
-    
+    print("Starting RAG Backend...")
     app.run(debug=True, host='0.0.0.0', port=5000)

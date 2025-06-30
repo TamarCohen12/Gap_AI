@@ -2,27 +2,23 @@ import os
 import json
 import hashlib
 from typing import List
-# import pandas as pd
 from langchain_aws import BedrockEmbeddings
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 
-# Configuration
-FILES_DIR = "files"
 VECTORSTORE_DIR = "vectorDB"
-SUPPORTED_EXTENSIONS = ['.xlsx', '.csv', '.txt', '.json']
 
-# Ensure directories exist
-os.makedirs(FILES_DIR, exist_ok=True)
 os.makedirs(VECTORSTORE_DIR, exist_ok=True)
 
 try:
     embeddings = BedrockEmbeddings(
         model_id="amazon.titan-embed-text-v1",
+        # cohere.embed-multilingual-v3
         region_name=os.getenv("AWS_REGION", "us-east-1")
     )
     print("AWS Bedrock models initialized successfully")
@@ -43,39 +39,51 @@ def get_file_hash(file_path: str) -> str:
         print(f"Error generating file hash: {e}")
         return ""
 
-def create_optimized_documents(json_file):
-    with open(json_file, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
+def load_document(file_path: str) -> List[Document]:
+    """Load and process document based on file type"""
     documents = []
-    for item in data:
-        # יצירת טקסט מאוד ממוקד לחיפוש
-        budgets = [
-            f"{b['קוד_תקציב']} {b['שם_תקציב']}"
-            for b in item.get('תקציבים_מהם_ניתן_לקנות_את_המענה', [])
-        ]
-        print(f"budgets: {budgets}")
-        searchable_text = f"""
-            {item['שם_מענה']}
-            {item.get('קוד_מענה', '')}
-            {' | '.join(budgets)}
-        """
-        print(f"searchable_text: {searchable_text}")
-        
-        doc = Document(
-            page_content=searchable_text.strip(),
-            metadata={
-                "code_maane": item['קוד_מענה'],
-                "name_maane": item['שם_מענה'],
-                "budgetsOfMaane": budgets,
-                "source": None#os.path.basename(file_path),
-                # הוסף כאן את שאר השדות הרלוונטיים
-                # **{k: v for k, v in item.items() if k not in ['קוד_מענה', 'שם_מענה', 'תקציבים_מהם_ניתן_לקנות_את_המענה']}
+    file_ext = Path(file_path).suffix.lower()
+    try:     
+        if file_ext == '.txt':
+            # Load text file
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            metadata = {
+                "source": os.path.basename(file_path),
+                "type": "text"
             }
-        )
-        print(f"doc: {doc}")
-        documents.append(doc)
-    
+            
+            documents.append(Document(page_content=content, metadata=metadata))
+            
+        elif file_ext == '.json':
+            # Load JSON file
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            #TODO: get the population from the json file
+            for i, item in enumerate(data):
+                if i < 10:
+                    population = "מוסד"
+                elif i < 20:
+                    population = "רשות"
+                else:
+                    population = "מחז"
+
+                content = json.dumps(item, indent=2, ensure_ascii=False)
+
+                metadata = {
+                    "source": os.path.basename(file_path),
+                    "type": "json",
+                    "index": i,
+                    "אוכלוסיה": population
+                }
+
+                documents.append(Document(page_content=content, metadata=metadata))
+            
+    except Exception as e:
+        print(f"Error loading document {file_path}: {e}")
+        
     return documents
 
 def create_vectorstore(documents: List[Document]) -> FAISS:
@@ -85,8 +93,8 @@ def create_vectorstore(documents: List[Document]) -> FAISS:
     
     # Split documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=100000,
-        chunk_overlap=0,
+        chunk_size=1000,
+        chunk_overlap=200,
         separators=["\n\n", "\n", " ", ""]
     )
     
