@@ -7,6 +7,7 @@ from langgraph.graph.message import add_messages
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     question: str
+    message_type: str  # "general_msg" or "search_item"
     search_query: str
     vectorstore: object
     retrieved_docs: List[Document]

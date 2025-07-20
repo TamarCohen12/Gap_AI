@@ -44,40 +44,49 @@ def load_document(file_path: str) -> List[Document]:
     documents = []
     file_ext = Path(file_path).suffix.lower()
     try:     
-        if file_ext == '.txt':
-            # Load text file
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+        # if file_ext == '.txt':
+        #     # Load text file
+        #     with open(file_path, 'r', encoding='utf-8') as f:
+        #         content = f.read()
             
-            metadata = {
-                "source": os.path.basename(file_path),
-                "type": "text"
-            }
+        #     metadata = {
+        #         "source": os.path.basename(file_path),
+        #         "type": "text"
+        #     }
             
-            documents.append(Document(page_content=content, metadata=metadata))
+        #     documents.append(Document(page_content=content, metadata=metadata))
             
-        elif file_ext == '.json':
+        if file_ext == '.json':
             # Load JSON file
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
             #TODO: get the population from the json file
+            
             for i, item in enumerate(data):
-                if i < 10:
+                if i < 1:
                     population = "מוסד"
+                    code_maane = '1323'
                 elif i < 20:
                     population = "רשות"
+                    code_maane = '2760'
                 else:
                     population = "מחז"
+                    code_maane = '1306'
 
                 content = json.dumps(item, indent=2, ensure_ascii=False)
 
                 metadata = {
-                    "source": os.path.basename(file_path),
+                    "population": population,
+                    "source": str(item["קוד"]),#os.path.basename(file_path),
                     "type": "json",
-                    "index": i,
-                    "אוכלוסיה": population
+                    # "index": str(i),
+                    # "code_maane": str(item["קוד_מענה"]),#code_maane
+                    # "taktzivim": item["תקציבים_מהם_ניתן_לקנות_את_המענה"],
+                    # "is_kriteryon": item["האם_יש_קריטריון"],
+                    # "shlav_chinuch":str(item["שלב_חינוך_שהמענה_מתאים_לו"]),#TODO:check the condition
                 }
+                print(metadata)
 
                 documents.append(Document(page_content=content, metadata=metadata))
             
@@ -93,8 +102,8 @@ def create_vectorstore(documents: List[Document]) -> FAISS:
     
     # Split documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
+        chunk_size=10000,
+        chunk_overlap=0,
         separators=["\n\n", "\n", " ", ""]
     )
     

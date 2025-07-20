@@ -12,7 +12,6 @@ CORS(app)
 
 # Configuration
 FILES_DIR = "files"
-SUPPORTED_EXTENSIONS = ['.xlsx', '.csv', '.txt', '.json']
 
 # Global variables
 current_vectorstore = None
@@ -41,25 +40,26 @@ def get_status():
             "initialized": False
         })
 
-@app.route('/api/initialize', methods=['GET'])#TODO:change to POST
+@app.route('/api/initialize', methods=['POST'])
 def initialize_system():
     """Initialize the RAG system"""
     # TODO:move it to redis
     global current_vectorstore, current_file_hash, system_initialized
     
     try:
+
         # Look for data file in files directory
         data_file = None
-        for ext in SUPPORTED_EXTENSIONS:
-            potential_file = os.path.join(FILES_DIR, f"data{ext}")
-            if os.path.exists(potential_file):
-                data_file = potential_file
-                break
         
-        if not data_file:
+        #todo: do it for 3 years
+        potential_file = os.path.join(FILES_DIR, f"transformed_maanim_with_facts.json")
+        if os.path.exists(potential_file):
+            data_file = potential_file
+        
+        else:
             return jsonify({
                 "success": False,
-                "status": f"no file in{FILES_DIR}",
+                "status": f"no file in {FILES_DIR}",
                 "error": "file not found"
             }), 400
         
@@ -110,7 +110,7 @@ def initialize_system():
             "error": str(e)
         }), 500
 
-@app.route('/api/ask', methods=['GET'])#TOOD:change to POST
+@app.route('/api/ask', methods=['POST'])
 def ask_question():
     """Process question and return answer"""
     global current_vectorstore
@@ -118,7 +118,21 @@ def ask_question():
     try:
         # data = request.get_json()
         # question = data.get('question', '').strip()
-        question = request.args.get('question', '').strip()
+        # question = request.args.get('question', '').strip()
+        # print("===========start====================")
+        data_req = request.get_json()
+
+        if not data_req:
+            return jsonify({"error": "No request data received"}), 400
+
+        taktzivim = data_req.get('taktzivimLemosad', [])
+        maanimWithKriteryonim = data_req.get('maanimWithKriteryonim', [])
+        question = data_req.get('question', '').strip()
+        # print("================finish get data========================")
+        # תוכל לשמור את זה, לעבד או לאתחל את המערכת איתם
+        # לדוגמה:
+        # print("Taktzivim:", taktzivim)
+        # print("Maanim:", maanimWithKriteryonim)
 
         
         if not question:
@@ -134,7 +148,7 @@ def ask_question():
             }), 400
         # user_info = request.args.get('user_info', '').strip()
         # user_info = "סל מנהיגות חינוכית, סל חינוך חברתי - קהילתי והעשרה, סל אוכלוסיות במיקוד"
-        user_info = ["סל תשתיות בית ספריות", "סל מנהיגות חינוכית", "סל חינוך חברתי - קהילתי והעשרה", "סל אוכלוסיות במיקוד"]
+        user_info = ["תקציב כללי", "סל מנהיגות חינוכית", "סל חינוך חברתי - קהילתי והעשרה", "סל אוכלוסיות במיקוד"]
         # user_info = "סל מנהיגות חינוכית"
         # Create initial state
         initial_state = {

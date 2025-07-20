@@ -38,7 +38,7 @@ def retrieve_documents(state: AgentState) -> AgentState:
         retriever = vectorstore.as_retriever(
             search_kwargs={
                 "k": 6,
-                "filter": {"אוכלוסיה": "מוסד"}  # Filter for "מוסד" population only
+                # "filter": {'code_maane': '1323' } 
             }
         )
         
@@ -47,16 +47,18 @@ def retrieve_documents(state: AgentState) -> AgentState:
         
         # If no documents found with "מוסד" filter, fallback to general search
         if not docs:
-            print("No documents found with 'מוסד' filter, falling back to general search")
+            print("No documents found, falling back to general search")
             retriever_fallback = vectorstore.as_retriever(search_kwargs={"k": 6})
             docs = retriever_fallback.invoke(question)
+        for doc in docs:
+            print(doc.metadata.get("source"), type(doc.metadata.get("source")))
         
         # Extract sources
         sources = [doc.metadata.get("source", "Unknown") for doc in docs]
         
         # Log filtering results for debugging
         if docs:
-            populations = [doc.metadata.get("אוכלוסיה", "Unknown") for doc in docs]
+            populations = [doc.metadata.get("population", "Unknown") for doc in docs]
             print(f"Retrieved {len(docs)} documents with populations: {set(populations)}")
         
         return {
@@ -83,6 +85,61 @@ def retrieve_documents(state: AgentState) -> AgentState:
             print(f"Fallback search also failed: {fallback_error}")
             return {**state, "retrieved_docs": [], "sources": []}
 
+def classify_message(state: AgentState) -> AgentState:
+    """Classify the incoming message"""
+    question = state["question"]
+    prompt = ChatPromptTemplate.from_messages([
+    ("system",
+     """אתה עוזר חכם ומיומן, המתמחה בזיהוי שאלות המשתמש וסיווגן לפי מטרתן לצורך איתור מענים.
+        השאלה היא: {question}
+
+        סווג את השאלה לאחד מהסוגים הבאים:
+        1. שאלה כללית – אינה מבקשת מענה או מידע קונקרטי, לדוגמה: "שלום", "מה שלומך?", "תודה", וכדומה.
+        2. שאלה ממוקדת – עוסקת בחיפוש מענה, פתרון, מידע או תכנית מסוימת.
+
+        אם יש ספק כלשהו – סווג כשאלה ממוקדת (סוג 2).
+
+        במקרה של שאלה כללית:
+        - השב בנימוס, אך החזר את המשתמש בעדינות ובאסרטיביות למוקד השיחה – מציאת מענים.
+        - דוגמה לתגובה מתאימה: "תודה! איך אפשר לעזור לך במציאת מענה מסוים?"
+
+        החזר תשובה במבנה JSON לפי הדוגמאות הבאות:
+
+        שאלה כללית (סוג 1):
+        {{ 
+            "message_type": "general_msg",
+            "answer":"תשובה מנומסת אך ממוקדת"
+        }}
+
+        שאלה על חיפוש (סוג 2):
+        {{ 
+            "message_type": "search_msg",
+            "answer": ""
+        }}
+        """),
+            ("human", "{question}")
+        ])
+
+    try:
+        # Generate classification response
+        chain = prompt | model | StrOutputParser()
+        response = chain.invoke({"question": question})
+        print(f"Classification response: {response}")
+        # Parse the response
+        data = json.loads(response)
+        if data:
+            message_type = data["message_type"] or "search_msg"        
+            answer = data["answer"] or ""     
+            print(f"Parsed classification: {message_type}, answer: {answer}")
+            # return {**state, "answer": "ששש"}
+            return {**state,  "message_type": message_type,  "answer": answer}
+        else:
+            print("Failed to parse classification response")
+            return {**state, "message_type": "search_msg", "answer": ""}
+    except Exception as e:
+        print(f"Error classifying message: {e}")
+        return {**state, "message_type": "search_msg", "answer": ""}
+
 def generate_answer(state: AgentState) -> AgentState:
     """Generate answer using retrieved documents"""
     question = state["question"]
@@ -99,7 +156,7 @@ def generate_answer(state: AgentState) -> AgentState:
         - אל תמציא מידע שלא קיים במסמכים
         - ענה קונקרטי לפי המידע שיש ברשותך, אל תתן הסבר או פירוט שלא קיים במידע
         - אסור להמליץ או להעדיף מענה אחד על פני השני!! אלא אך ורק למצוא את המענה המתאים ביותר לצורך המשתמש 
-        - אם השאילתא לא ממקדת למענה מסוים, אלא מתאימה לרוב המענים, הסבר את זה למשתמש ואל תתן סתם כמה מענים ראשונים
+        - אם השאילתא לא ממקדת למענה מסוים, אלא מתאימה לרוב המענים, הסבר את זה למשתמש ותתן סתם כמה מענים ראשונים
         - אם יש כמה פריטים מתאימים - החזר כמה שיותר - ועד חמש פריטים
 
         **אם אין מידע מתאים:** 
@@ -107,12 +164,14 @@ def generate_answer(state: AgentState) -> AgentState:
 
         **אם יש מידע מתאים:**
         " תשובה כמו זו, אך כל פעם בניסוח קצת אחר שיהיה גיוון: מצאתי מענים מתאימים לשאלתך: [שמות המענים]"
-
+        חשוב לציין את שמות המענים בתשובה!
+        אם חוזרים מענים - יש לציין בתשובה את השם שלהם במקטע ה "answer" ואת הקודים שלהם במקטע: "maanim"
         **פורמט תגובה (JSON בלבד):**
         {{
-            "answer": "התשובה כאן",
+            "answer": "התשובה כאן כולל את שמות המענים שנמצאו",
             "maanim": "קודי המענה מופרדים בפסיקים"
         }}
+        אל תחזיר עוד מלל מעבר לJSON הזה הקפד על מבנה JSON תקין, ללא תוספת תווים או מרכאות שעלולים לשבור
         הקשר מהמסמכים:
         {context}
         מידע על תקציבי המשתמש:
@@ -141,6 +200,6 @@ def generate_answer(state: AgentState) -> AgentState:
 def process_user_query(state: AgentState) -> AgentState:
     """Process user query and generate a search query"""
     question = state["question"]
-    # TODO: call llm to generate search query
+    # TODO: call llm to generate search query to RAG
     return {**state, "search_query": question} 
 
