@@ -143,11 +143,13 @@ def classify_message(state: AgentState) -> AgentState:
 def generate_answer(state: AgentState) -> AgentState:
     """Generate answer using retrieved documents"""
     question = state["question"]
-    docs = state["retrieved_docs"]
+    # docs = state["retrieved_docs"]
     user_info = state["user_info"]
 
     # Create context from retrieved documents
-    context = "\n\n".join([doc.page_content for doc in docs])
+    # context = "\n\n".join([doc.page_content for doc in docs])
+    with open("files/short_long_maanim.json", 'r', encoding='utf-8') as f:
+        context = json.load(f)
     prompt = ChatPromptTemplate.from_messages([("system",
         """אתה עוזר חכם המומחה למציאת מענים לפי שאלת המשתמש.
         **הנחיות:**

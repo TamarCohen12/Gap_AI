@@ -9,7 +9,7 @@ def create_workflow():
     # הוספת שלבים
     workflow.add_node("classify", classify_message)
     workflow.add_node("process_query", process_user_query)
-    workflow.add_node("retrieve", retrieve_documents)
+    # workflow.add_node("retrieve", retrieve_documents)
     workflow.add_node("generate", generate_answer)
 
     # נקודת כניסה
@@ -31,8 +31,9 @@ def create_workflow():
     )
 
     # הסתעפות לאחר הסיווג
-    workflow.add_edge("process_query", "retrieve")
-    workflow.add_edge("retrieve", "generate")
+    # workflow.add_edge("process_query", "retrieve")
+    # workflow.add_edge("retrieve", "generate")
+    workflow.add_edge("process_query", "generate")
     workflow.add_edge("generate", END)
     return workflow.compile()
 
