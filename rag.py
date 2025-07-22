@@ -88,7 +88,7 @@ def load_document(file_path: str) -> List[Document]:
                 }
                 print(metadata)
 
-                documents.append(Document(page_content=content, metadata=metadata))
+                documents.append(Document(page_content=item["עובדות"], metadata=metadata))#TODO:add taktzir
             
     except Exception as e:
         print(f"Error loading document {file_path}: {e}")
