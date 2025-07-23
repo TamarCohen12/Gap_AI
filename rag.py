@@ -44,17 +44,17 @@ def load_document(file_path: str) -> List[Document]:
     documents = []
     file_ext = Path(file_path).suffix.lower()
     try:     
-        # if file_ext == '.txt':
-        #     # Load text file
-        #     with open(file_path, 'r', encoding='utf-8') as f:
-        #         content = f.read()
+        if file_ext == '.txt':
+            # Load text file
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
             
-        #     metadata = {
-        #         "source": os.path.basename(file_path),
-        #         "type": "text"
-        #     }
+            metadata = {
+                "source": os.path.basename(file_path),
+                "type": "text"
+            }
             
-        #     documents.append(Document(page_content=content, metadata=metadata))
+            documents.append(Document(page_content=content, metadata=metadata))
             
         if file_ext == '.json':
             # Load JSON file
@@ -102,8 +102,8 @@ def create_vectorstore(documents: List[Document]) -> FAISS:
     
     # Split documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=10000,
-        chunk_overlap=0,
+        chunk_size=1000,
+        chunk_overlap=200,
         separators=["\n\n", "\n", " ", ""]
     )
     

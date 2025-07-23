@@ -52,7 +52,7 @@ def initialize_system():
         data_file = None
         
         #todo: do it for 3 years
-        potential_file = os.path.join(FILES_DIR, f"string_maanim.json")
+        potential_file = os.path.join(FILES_DIR, f"10_maanim.txt")
         if os.path.exists(potential_file):
             data_file = potential_file
         
