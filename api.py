@@ -128,6 +128,7 @@ def ask_question():
         taktzivim = data_req.get('taktzivimLemosad', [])
         maanimWithKriteryonim = data_req.get('maanimWithKriteryonim', [])
         question = data_req.get('question', '').strip()
+        chat_history = data_req.get('chat_history', [])
         # print("================finish get data========================")
         # תוכל לשמור את זה, לעבד או לאתחל את המערכת איתם
         # לדוגמה:
@@ -148,7 +149,7 @@ def ask_question():
             }), 400
         # user_info = request.args.get('user_info', '').strip()
         # user_info = "סל מנהיגות חינוכית, סל חינוך חברתי - קהילתי והעשרה, סל אוכלוסיות במיקוד"
-        user_info = ["תקציב כללי", "סל מנהיגות חינוכית", "סל חינוך חברתי - קהילתי והעשרה", "סל אוכלוסיות במיקוד"]
+        user_info = taktzivim # ["תקציב כללי", "סל מנהיגות חינוכית", "סל חינוך חברתי - קהילתי והעשרה", "סל אוכלוסיות במיקוד"]
         # user_info = "סל מנהיגות חינוכית"
         # Create initial state
         initial_state = {
@@ -159,7 +160,9 @@ def ask_question():
             "answer": "",
             "search_query": "",
             "sources": [],
-            "user_info": user_info
+            "user_info": user_info,
+            "chat_history": chat_history,
+            "summary": ""
         }
         print(f"----------Processing question: {question}-----------")
         # Run the workflow
@@ -169,7 +172,9 @@ def ask_question():
             "answer": result["answer"],
             "sources": result["sources"],
             "question": question,
-            "search_query": result["search_query"]
+            "search_query": result["search_query"],
+            "summary": result["summary"],
+            "chat_history": result["chat_history"],
         })
         
     except Exception as e:

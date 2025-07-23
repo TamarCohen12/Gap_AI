@@ -143,43 +143,67 @@ def classify_message(state: AgentState) -> AgentState:
 def generate_answer(state: AgentState) -> AgentState:
     """Generate answer using retrieved documents"""
     question = state["question"]
-    # docs = state["retrieved_docs"]
     user_info = state["user_info"]
+    print(f"Generating answer for question: {question}")
+    chat_history = state.get("chat_history", [])
+    print(f"Generating answer for chat_history: {chat_history}")
 
     # Create context from retrieved documents
-    # context = "\n\n".join([doc.page_content for doc in docs])
     with open("files/short_long_maanim.json", 'r', encoding='utf-8') as f:
         context = json.load(f)
+    
+    # יצירת הקשר של היסטוריית צ'אט
+    history_context = ""
+    if chat_history:
+        history_context = "היסטוריית השיחה:\n" + "\n".join([
+            f"- {item}" for item in chat_history[-3:]  # רק 3 הרשומות האחרונות
+        ]) + "\n\n"
+    
     prompt = ChatPromptTemplate.from_messages([("system",
         """אתה עוזר חכם המומחה למציאת מענים לפי שאלת המשתמש.
         **הנחיות:**
         - ענה בעברית בלבד
         - השתמש אך ורק במידע מהמסמכים המצורפים
         - אל תמציא מידע שלא קיים במסמכים
+        - כשמבקשים מענה - תחזיר רק מענים ולא תקציבים
         - ענה קונקרטי לפי המידע שיש ברשותך, אל תתן הסבר או פירוט שלא קיים במידע
+        - לרוב המשתמש ישאל שאלות הנוגעות למענים, הבן כך את השאלה. לדוגמא: שאלה: משהו שקשור לחשבון - תחפש מענה הקשור לחשבון
         - אסור להמליץ או להעדיף מענה אחד על פני השני!! אלא אך ורק למצוא את המענה המתאים ביותר לצורך המשתמש 
-        - אם השאילתא לא ממקדת למענה מסוים, אלא מתאימה לרוב המענים, הסבר את זה למשתמש ותתן סתם כמה מענים ראשונים
         - אם יש כמה פריטים מתאימים - החזר כמה שיותר - ועד חמש פריטים
+        - שים לב להיסטוריית השיחה ולהקשר של שאלות קודמות
+        -חשוב מאוד לשמור על רצף השיחה, לדוג' אם בהסטורית השיחה הוחזרו עמה מענים על פי בקשת המשתמש, ובשאלה הנוכחית הוא מבקש עוד, או מינים אחרים, אם אם יש נוספים - יש להביא מענים העונים על השאלה מההסטוריה, אך שלא חזרו בתשובה מההסטוריה.
+        לדוג': אם המשתמש שאל בהסטוריה על מענה מתקציב קבוע וקיבל מענה 123, ובשאלה הנוכחית הוא מבקשה אם יש עוד מענים - יש לחפש עוד מענים ששייכים לתקציב קבוע ושהם לא קוד 123.
+        - אם המשתמש אומר "עוד" או "נוספים" - חזור למענים שלא הוזכרו בתשובות קודמות
+        -אם המשתמש מבקש פירוט/הסבר/הבדלים/מידע נוסף על המענים שחזרו בתשובה קודמת, אין צורך לחפש שוב מענים, אלא רק לפרט או לתת את המידע על המענים שחזרו בתשובה קודמת. 
 
-        **אם אין מידע מתאים:** 
-        "לא מצאתי מענים מתאימים לשאלתך. אנא דייק את החיפוש."
-
-        **אם יש מידע מתאים:**
-        " תשובה כמו זו, אך כל פעם בניסוח קצת אחר שיהיה גיוון: מצאתי מענים מתאימים לשאלתך: [שמות המענים]"
+        - אם המשתמש מבקש מידע על מענה מסוים, יש לחפש את המענה הזה ולתאר אותו.
+        - אם המשתמש מבקש מידע על מענה מסוים, אך הוא לא קיים, יש להחזיר תשובה מתאימה.
+        -אם אין מענה הקשור לשאלה באופן ישיר, תסביר זאת למשתמש, ואל תחזיר מענה שקשור באופן עקיף
+        
+        אם יש מידע מתאים, החזר את התשובה שצורה נעימה ואדיבה, אך חשוב לתמצת את התשובה שלא תהיה ארוכה מדי, כמו"כ - יש לכלול את שמות המענים המוחזרים בתשובה.       
         חשוב לציין את שמות המענים בתשובה!
         אם חוזרים מענים - יש לציין בתשובה את השם שלהם במקטע ה "answer" ואת הקודים שלהם במקטע: "maanim"
-        **פורמט תגובה (JSON בלבד):**
+        חשוב מאוד להחזיר תגובה ב JSON במבנה הבא, ללא כל תוספות או מילים נוספות!!
+        **(JSON בלבד):**
         {{
             "answer": "התשובה כאן כולל את שמות המענים שנמצאו",
             "maanim": "קודי המענה מופרדים בפסיקים"
         }}
         אל תחזיר עוד מלל מעבר לJSON הזה הקפד על מבנה JSON תקין, ללא תוספת תווים או מרכאות שעלולים לשבור
+        
         הקשר מהמסמכים:
         {context}
         מידע על תקציבי המשתמש:
         {user_info}
+        שים לב למבנה התקציבים: code,teur, taktzivKavua.
+        המשמעות של שדה taktzivKavua היא שנשאר מהתקציב הזה כסף שמכונה תקציב קבוע. אם המשתמש מעדיף לנצל תקציב קבוע - יש להחזיר לו מענים שמשוכים לתקציבים שהשדה הזה מכיל true.
         מספיקה התאמה של תקציב אחד שקיים למשתמש ומשויך למענה, אין צורך בהתאמה של כמה תקציבים.
-        """), ("human", "{question}")])
+        חשוב מאוד להחזיר רק מענים שמשויכים לתקציב שקיים למשתמש.
+        אם אין למענה תקציב שמשויך למשתמש - אל תחזיר אותו!
+        אם בשאלת המשתמש יש התיחסות לתקציב מסוים, או סוג תקציב מסוים, חפש מענים שייכים דווקא לתקציב המשויך.
+        לדוגמא: המשתמש מבקש לסיים את תקציב "הכלה והשתלבות" - חפש רק מענים שמשויכים לתקציב הזה.
+        עוד  דוגמא: המשתמש מבקש לקנות מענים מתקציב קבוע - תבדוק במידע על של תקציבי המשתמש באלו תקציבים השדה taktzivKavua מכיל true ותחזיר מענים ששייכים לתקציבים אלו.
+        """), ("human", "{question} שאלות ותשובות קודמות: {history_context} ")])
 
     try:
         # Generate response
@@ -187,7 +211,8 @@ def generate_answer(state: AgentState) -> AgentState:
         answer = chain.invoke({
             "context": context,
             "user_info": json.dumps(user_info, ensure_ascii=False),
-            "question": question
+            "question": question,
+            "history_context": history_context
         })
         
         return {**state, "answer": answer}
@@ -203,5 +228,44 @@ def process_user_query(state: AgentState) -> AgentState:
     """Process user query and generate a search query"""
     question = state["question"]
     # TODO: call llm to generate search query to RAG
+    print(f"Processing user query: {question}")
     return {**state, "search_query": question} 
+
+def create_summary(state: AgentState) -> AgentState:
+    """יצירת תמצית קצרה של השאלה והתשובה"""
+    question = state["question"]
+    answer = state["answer"]
+    
+    prompt = ChatPromptTemplate.from_messages([
+        ("system",
+         """יצור תמצית קצרה של השאלה והתשובה המצורפים. 
+         התמצית צריכה להיות קצרה ומדויקת - עד 100 מילים.
+         אם חזר מידע על מענים ספציפיים בשאלה או בתשובה - חשוב מאוד לכלול אותם בתמצית
+         התוכן שיחזור יראה כך:
+         "תמצית קצרה של השאלה: ... התשובה: ..."
+         השאלה: {question}
+         התשובה: {answer}
+         """),
+        ("human", "יצור תמצית")
+    ])
+    
+    try:
+        chain = prompt | model | StrOutputParser()
+        summary = chain.invoke({
+            "question": question,
+            "answer": answer
+        })
+        print(f"Summary response: {summary}")
+        # data = json.loads(response)
+        # print(data)
+        # print(f"Generated summary: {data.get('summary', '')}")
+        # summary = data.get("summary", f"שאלה: {question[:50]}... תשובה: {answer[:50]}...")
+        
+        return {**state, "summary": summary}
+        
+    except Exception as e:
+        print(f"Error creating summary: {e}")
+        # תמצית פשוטה במקרה של שגיאה
+        summary = f"שאלה: {question[:50]}... תשובה: {answer[:50]}..."
+        return {**state, "summary": summary}
 

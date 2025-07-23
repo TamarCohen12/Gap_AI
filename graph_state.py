@@ -13,4 +13,6 @@ class AgentState(TypedDict):
     retrieved_docs: List[Document]
     answer: str
     sources: List[str]
-    user_info:str
+    user_info: str
+    chat_history: List[Dict[str, str]]  # רשימה של תמצות שאלות ותשובות
+    summary: str  # תמצית של השאלה והתשובה הנוכחית
